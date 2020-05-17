@@ -28,6 +28,13 @@
   {% if site.google_fonts %}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family={%- for font in site.google_fonts -%}{{ font.name | replace: ' ', '+' }}{% if font.weights %}:{% endif %}{{ font.weights | remove: ' ' }}{% if forloop.last != true %}|{% endif %}{%- endfor -%}">
   {% endif %}
+  <style>
+    body {
+      background-image: url("{{ '/assets/images/grass100.png' | relative_url }}");
+      background-repeat: repeat;
+      background-size: 100px;
+    }
+  </style>
 
   {%- if site.plugins contains 'jekyll-feed' or site.gems contains 'jekyll-feed' -%}
     {%- comment -%}
