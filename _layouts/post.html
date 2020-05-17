@@ -1,0 +1,88 @@
+---
+layout: default
+---
+
+<main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    {% include page-image.html %}
+    <div class="page-wrapper">
+      <header class="page-header">
+        {% assign title = page.title | markdownify | strip_html %}
+        {% if page.link %}
+          <h1 id="page-title" class="page-title p-name"><a href="{{ page.link }}">{{ title }} <span class="link-arrow">&rarr;</span></a></h1>
+        {% else %}
+          <h1 id="page-title" class="page-title p-name">{{ title }}</h1>
+        {% endif %}
+      </header>
+
+      <div class="page-sidebar">
+        {% include page-author.html %}
+        {% include page-categories.html %}
+        {% include page-tags.html %}
+      </div>
+
+      <div class="page-content">
+
+        {% unless page.jokes == false %}
+        <h3>Jokes!</h3>
+        <div class="jokes-carousel">
+          {% for joke in page.jokes %}
+          <div class="mySlides fade">
+            <div class="numbertext">{{ forloop.index }} / {{ forloop.length}}</div>
+            <div class="carousel-wrap">{% include joke-chat.html %}</div>
+          </div>
+          {% endfor %}
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        {% endunless %}
+
+
+        <h3>Episode on YouTube </h3>
+        {% include responsive-embed url=page.youtube_url ratio="16:9" %}
+
+        <p>
+          <a href="{{ page.youtube_url }}">YouTube - {{page.title}}</a>
+        </p>
+        
+
+        <div class="e-content">
+          {{ content }}
+        </div>
+
+        {% include page-pagination.html %}
+      </div>
+    </div>
+  </article>
+</main>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  // var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  // for (i = 0; i < dots.length; i++) {
+  //     dots[i].className = dots[i].className.replace(" active", "");
+  // }
+  slides[slideIndex-1].style.display = "flex";
+  // dots[slideIndex-1].className += " active";
+}
+</script>

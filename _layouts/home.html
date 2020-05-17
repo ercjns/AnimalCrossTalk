@@ -1,0 +1,55 @@
+---
+layout: page
+---
+
+{% assign latest_post = site.posts.first %}
+
+
+{% assign joke = latest_post.jokes.first %}
+<div class="home-chat-wrap-ext">
+  <div class="home-chat-wrap">
+    <div class="chat">
+      <div class="yours messages">
+        <div class="message">
+          {{ joke.hook }}
+        </div>
+      </div>
+      <div class="mine messages last">
+        <div class="message">
+          {{ joke.bite }}
+        </div>
+      </div>
+      <div class="yours messages last">
+        <div class="message">
+          {{ joke.punch }}
+        </div>
+        <small>{{ joke.person }} ({{latest_post.episode}})</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ content }}
+
+<p style="text-align: center;">
+  New Episodes of <i>Animal Talking with Gary Whitta</i> air Mondays at 9am, Wednesdays at 7pm, and Fridays at 9am on <a href="https://twitch.tv/garywhitta">Gary's Twitch Channel</a>.
+</p>
+
+{% include responsive-embed url=latest_post.youtube_url ratio="16:9" %}
+
+<p style="text-align: center;">
+  The latest Animal Talking on YouTube: <a href="{{ latest_post.youtube_url }}">{{latest_post.title}}</a>.
+</p>
+
+<div class="entries-{{ page.entries_layout | default: 'list' }}">
+  <p>Recent Episodes</p>
+  {%- if site.plugins contains 'jekyll-paginate' and page.paginate or site.gems contains 'jekyll-paginate' and page.paginate -%}
+    {%- comment -%}
+      Add paginator.posts loop if jekyll-paginate plugin is enabled
+      and page.paginate == true
+    {%- endcomment -%}
+    {% include posts-paginated.html %}
+  {%- else -%}
+    {% include posts-limit.html %}
+  {%- endif -%}
+</div>
