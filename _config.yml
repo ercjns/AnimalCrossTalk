@@ -23,8 +23,8 @@ title: Animal CrossTalk
 description: >- # this means to ignore newlines until "baseurl:"
   Animal CrossTalk: an island for fans of Animal Talking with Gary 
   Whitta!
-baseurl: # the subpath of your site, e.g. /blog
-url: # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/AnimalCrossTalk" # the subpath of your site, e.g. /blog
+url: "https://ercjns.com" # the base hostname & protocol for your site, e.g. http://example.com
 
 theme: jekyll-theme-so-simple
 
